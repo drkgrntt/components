@@ -1,10 +1,17 @@
 import typescript from "@rollup/plugin-typescript";
 import nodeResolve from "@rollup/plugin-node-resolve";
+import html from "rollup-plugin-html";
 
 export default [
   {
-    input: "./index.ts",
-    plugins: [nodeResolve(), typescript()],
+    input: "./src/index.ts",
+    plugins: [
+      nodeResolve(),
+      typescript(),
+      html({
+        include: "**/*.html",
+      }),
+    ],
     onwarn: (warning, next) => {
       if (warning.code === "THIS_IS_UNDEFINED") return;
       next(warning);
@@ -16,8 +23,14 @@ export default [
     },
   },
   {
-    input: "./index.ts",
-    plugins: [nodeResolve(), typescript()],
+    input: "./src/index.ts",
+    plugins: [
+      nodeResolve(),
+      typescript(),
+      html({
+        include: "**/*.html",
+      }),
+    ],
     onwarn: (warning, next) => {
       if (warning.code === "THIS_IS_UNDEFINED") return;
       next(warning);
