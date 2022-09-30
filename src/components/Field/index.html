@@ -1,0 +1,42 @@
+<style>
+  .field {
+    display: flex;
+    flex-direction: column;
+  }
+
+  ::slotted(input),
+  ::slotted(textarea) {
+    padding: 0.5rem;
+    font-size: 16px;
+    background: transparent;
+    transition: 0.3s;
+    width: 100%;
+  }
+
+  ::slotted(input:not(:focus)),
+  ::slotted(textarea:not(:focus)) {
+    border: none;
+    border-bottom: 1px solid grey;
+    border-bottom: 1px solid var(--neutral-color);
+    padding: 0.5rem 0 0 0;
+  }
+
+  .text {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  [data-validation] {
+    margin-block: 0;
+    color: red;
+    color: var(--alert-color);
+  }
+</style>
+
+<div class="field">
+  <slot name="input"></slot>
+  <div class="text">
+    <slot name="label"></slot>
+    <p data-validation></p>
+  </div>
+</div>
