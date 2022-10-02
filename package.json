@@ -5,7 +5,7 @@
   "main": "index.ts",
   "scripts": {
     "clean": "rimraf dist",
-    "build": "make-dir dist && rollup -c rollup.config.js && tsc -p tsconfig.json",
+    "build": "make-dir dist && rollup -c rollup.config.js && tsc -p tsconfig.json && cp ./src/index.css ./dist/fesm2015/index.css",
     "prepublishOnly": "copyfiles package.json dist",
     "lint": "eslint . --ext .ts",
     "storybook": "start-storybook -p 6006",
