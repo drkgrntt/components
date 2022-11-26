@@ -5,28 +5,93 @@
   }
 
   button {
-    --background: #0fa;
-    --background: var(--primary-color);
-    border: 1px solid var(--background);
-    background-color: var(--background);
-    --color: white;
-    --color: var(--white);
-    color: var(--color);
-
-    margin: 0;
-    padding: 1rem 2rem;
-    border-radius: 0;
-    font-size: 1.3rem;
+    padding: 0.5rem;
+    font-size: 16px;
+    background: transparent;
+    transition: 0.3s;
+    width: 100%;
+    border-radius: 5px;
     cursor: pointer;
-    /* transition: 0.2s; */
   }
 
   button:hover {
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     box-shadow: var(--heavy-shadow);
   }
+
+  button:disabled {
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+
+  .loader {
+    display: inline-block;
+    position: relative;
+    width: 4rem;
+    height: 1rem;
+  }
+  .loader div {
+    position: absolute;
+    top: 0.5rem;
+    width: 0.3rem;
+    height: 0.3rem;
+    border-radius: 50%;
+    background: var(--neutral-color);
+    animation-timing-function: cubic-bezier(0, 1, 1, 0);
+    transition: all 0.3s;
+  }
+  .loader div:nth-child(1) {
+    left: 0.5rem;
+    animation: loader1 0.6s infinite;
+  }
+  .loader div:nth-child(2) {
+    left: 0.5rem;
+    animation: loader2 0.6s infinite;
+  }
+  .loader div:nth-child(3) {
+    left: 2rem;
+    animation: loader2 0.6s infinite;
+  }
+  .loader div:nth-child(4) {
+    left: 3.5rem;
+    animation: loader3 0.6s infinite;
+  }
+  @keyframes loader1 {
+    0% {
+      transform: scale(0);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  @keyframes loader3 {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(0);
+    }
+  }
+  @keyframes loader2 {
+    0% {
+      transform: translate(0, 0);
+    }
+    100% {
+      transform: translate(1.5rem, 0);
+    }
+  }
+
+  .hidden {
+    display: none;
+  }
 </style>
 
 <button>
-  <slot />
+  <slot></slot>
+  <div class="loader hidden">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
 </button>

@@ -1,5 +1,4 @@
 import { BaseElement } from "../../BaseElement";
-import { Loader } from "../Loader";
 import template from "./index.html";
 
 export class Button extends BaseElement {
@@ -18,12 +17,6 @@ export class Button extends BaseElement {
 
   attributeChangedCallback(name: string, oldValue: string, newValue: string) {
     switch (name) {
-      case "color":
-        this.changeButtonStyle("--color", newValue);
-        break;
-      case "background":
-        this.changeButtonStyle("--background", newValue);
-        break;
       case "click":
         this.changeClickHandler(newValue);
         break;
@@ -47,19 +40,15 @@ export class Button extends BaseElement {
   }
 
   handleClick = async (event: MouseEvent) => {
-    const buttonContent = this.button.innerHTML;
-    const prevPadding = this.button.style.padding;
-
     this.button.disabled = true;
-    this.button.innerHTML = "";
-    this.button.style.padding = ".5rem 4rem";
-    this.button.append(new Loader());
+    this.button.querySelector(".loader")?.classList.remove("hidden");
+    this.button.querySelector("slot")?.classList.add("hidden");
 
     await this.onClick(event);
 
-    this.button.style.padding = prevPadding;
-    this.button.innerHTML = buttonContent;
     this.button.disabled = false;
+    this.button.querySelector(".loader")?.classList.add("hidden");
+    this.button.querySelector("slot")?.classList.remove("hidden");
   };
 }
 
