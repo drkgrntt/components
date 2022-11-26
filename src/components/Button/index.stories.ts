@@ -1,9 +1,9 @@
 import { Button } from ".";
 
-const Template = ({ color, background, click }) =>
+const Template = ({ click }) =>
   `
   <drk-container>
-    <drk-button click="${click}" color="${color}" background="${background}">
+    <drk-button click="${click}">
       Click Me
     </drk-button>
   </drk-container>
@@ -16,7 +16,5 @@ export default {
 
 export const Default = Template.bind({});
 Default.args = {
-  color: "white",
-  background: "#0fa",
   click: "return new Promise((r) => setTimeout(r, 2000))",
 };
